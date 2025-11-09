@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Stories - Milestone Global Education</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #d32f2f;
+            --light: #ffffff;
+            --dark: #212529;
+            --gray: #6c757d;
+            --transition: all 0.3s ease;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--light);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+            border: 2px solid var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background-color: transparent;
+            color: var(--secondary);
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Hero Section */
+        .success-hero {
+            background: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+        }
+
+        .success-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .success-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .success-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .success-hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* Success Stories */
+        .success-stories {
+            background-color: #f8f9fa;
+        }
+
+        .story-single {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .story-image {
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .university-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .story-content {
+            padding: 40px;
+        }
+
+        .student-name {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .student-program {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .student-quote {
+            font-style: italic;
+            color: var(--gray);
+            line-height: 1.7;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .student-quote::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 3rem;
+            color: var(--secondary);
+            font-family: serif;
+        }
+
+        /* CTA Section */
+        .cta {
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 25px;
+            font-size: 1rem;
+            color: var(--gray);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: #e0e0e0;
+            padding: 50px 0 15px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 15px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 8px 0;
+                text-align: center;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .success-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+            
+            .story-image {
+                height: 300px;
+            }
+            
+            .story-content {
+                padding: 30px 20px;
+            }
+            
+            .student-name {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .story-content {
+                padding: 25px 15px;
+            }
+            
+            .student-name {
+                font-size: 1.3rem;
+            }
+            
+            .student-quote {
+                font-size: 1rem;
+                padding-left: 20px;
+            }
+            
+            .student-quote::before {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">Milestone Global Education</div>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+                    <li><a href="destinations.html">Study Destinations</a></li>
+                    <li><a href="success.html" class="active">Success Stories</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+                <div class="mobile-menu" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="success-hero">
+        <div class="container">
+            <h1>Success Stories</h1>
+            <p>Real students, real dreams, real achievements - see how we've helped students reach their global education goals</p>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="success-stories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Student Achievements</h2>
+                <p>Meet the students who have successfully pursued their dreams with our guidance and support</p>
+            </div>
+            
+            <!-- Valentine's Story - Only Story -->
+            <div class="story-single">
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Valentine">
+                    <div class="university-badge">NIMS University, India</div>
+                </div>
+                <div class="story-content">
+                    <div class="student-name">Valentine</div>
+                    <div class="student-program">India • 2025 Intake</div>
+                    <div class="student-quote">
+                        "Milestone helped me secure admission to NIMS University in India. Their support was incredible throughout the entire process - from application to visa guidance. I couldn't have done it without their expertise and dedication. The team was always available to answer my questions and made the complex process feel manageable and straightforward."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Write Your Success Story?</h2>
+            <p>Join Valentine and other successful students who have achieved their dreams of international education with our guidance.</p>
+            <a href="contact.html" class="btn btn-primary">Start Your Journey</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Milestone Global Education</h3>
+                    <p>Your trusted partner for international education and career guidance.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=61583068281897&rdid" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/milestoneglobaleducation" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/918699750645" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="destinations.html">Study Destinations</a></li>
+                        <li><a href="success.html">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Education Ave, City, Country</li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+918699750645">+91 86997 50645</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:milestoneglobaledu@gmail.com">milestoneglobaledu@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Milestone Global Education</p>
+                <p><a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.getElementById('nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

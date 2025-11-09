@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Milestone Global Education</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #d32f2f;
+            --light: #ffffff;
+            --dark: #212529;
+            --gray: #6c757d;
+            --transition: all 0.3s ease;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--light);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+            border: 2px solid var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background-color: transparent;
+            color: var(--secondary);
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary), #0d2b5e);
+            color: white;
+            text-align: center;
+            padding: 120px 0 60px;
+            margin-top: 70px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        /* Blog Section */
+        .blog-section {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+
+        .blog-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            border-left: 3px solid var(--primary);
+        }
+
+        .sidebar-widget h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .sidebar-widget h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .recent-posts-list {
+            list-style: none;
+        }
+
+        .recent-post-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .recent-post-item:hover {
+            transform: translateX(5px);
+        }
+
+        .recent-post-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .recent-post-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 6px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .recent-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .recent-post-content h4 {
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+
+        .recent-post-content .recent-post-date {
+            font-size: 0.75rem;
+            color: var(--secondary);
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary), #0d2b5e);
+            color: white;
+            text-align: center;
+            padding: 70px 0;
+        }
+
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 25px;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: #e0e0e0;
+            padding: 50px 0 15px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 15px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 8px 0;
+                text-align: center;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">Milestone Global Education</div>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="1. Homepage (1).html">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Services</a></li>
+                    <li><a href="#">Study Destinations</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                    <li><a href="#" class="active">Blog</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                </ul>
+                <div class="mobile-menu" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Blog</h1>
+            <p>Stay updated with the latest news, insights, and tips on global education</p>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-container">
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Recent Posts Widget -->
+                    <div class="sidebar-widget">
+                        <h3>Recent Posts</h3>
+                        <ul class="recent-posts-list">
+                            <li class="recent-post-item">
+                                <div class="recent-post-image">
+                                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Top 5 Reasons to Study in Canada in 2025">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h4>Top 5 Reasons to Study in Canada in 2025</h4>
+                                    <div class="recent-post-date">June 15, 2025</div>
+                                </div>
+                            </li>
+                            <li class="recent-post-item">
+                                <div class="recent-post-image">
+                                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="How to Prepare for Your Student Visa Interview">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h4>How to Prepare for Your Student Visa Interview</h4>
+                                    <div class="recent-post-date">June 8, 2025</div>
+                                </div>
+                            </li>
+                            <li class="recent-post-item">
+                                <div class="recent-post-image">
+                                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Scholarships for International Students in 2025">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h4>Scholarships for International Students in 2025</h4>
+                                    <div class="recent-post-date">June 1, 2025</div>
+                                </div>
+                            </li>
+                            <li class="recent-post-item">
+                                <div class="recent-post-image">
+                                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Choosing the Right University: A Comprehensive Guide">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h4>Choosing the Right University: A Comprehensive Guide</h4>
+                                    <div class="recent-post-date">May 25, 2025</div>
+                                </div>
+                            </li>
+                            <li class="recent-post-item">
+                                <div class="recent-post-image">
+                                    <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Understanding IELTS and TOEFL Requirements">
+                                </div>
+                                <div class="recent-post-content">
+                                    <h4>Understanding IELTS and TOEFL Requirements</h4>
+                                    <div class="recent-post-date">May 18, 2025</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Start Your Global Education Journey?</h2>
+            <p>Contact us today for a free consultation and take the first step towards your dream education abroad.</p>
+            <a href="#contact-us" class="btn btn-secondary">Get Started Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact-us">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Milestone Global Education</h3>
+                    <p>Your trusted partner for international education and career guidance.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=61583068281897&rdid" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/milestoneglobaleducation" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/918699750645" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="1. Homepage (1).html">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Services</a></li>
+                        <li><a href="#">Study Destinations</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Education Ave, City, Country</li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+918699750645">+91 86997 50645</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:milestoneglobaledu@gmail.com">milestoneglobaledu@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Milestone Global Education</p>
+                <p><a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.getElementById('nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

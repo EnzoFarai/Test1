@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Destinations - Milestone Global Education</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #d32f2f;
+            --light: #ffffff;
+            --dark: #212529;
+            --gray: #6c757d;
+            --transition: all 0.3s ease;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--light);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+            border: 2px solid var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background-color: transparent;
+            color: var(--secondary);
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Hero Section */
+        .destinations-hero {
+            background: url('https://images.unsplash.com/photo-1485738422979-f5c462d49f74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+        }
+
+        .destinations-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .destinations-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .destinations-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .destinations-hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* Destinations Grid */
+        .destinations-grid {
+            background-color: #f8f9fa;
+        }
+
+        .destination-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .destination-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+        }
+
+        .destination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .destination-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .destination-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .destination-card:hover .destination-image img {
+            transform: scale(1.05);
+        }
+
+        .destination-flag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 25px;
+            border-radius: 3px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .destination-flag img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .destination-content {
+            padding: 25px;
+        }
+
+        .destination-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .destination-content h3 i {
+            color: var(--secondary);
+        }
+
+        .destination-section {
+            margin-bottom: 20px;
+        }
+
+        .destination-section h4 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .destination-section h4 i {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .destination-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .destination-section li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .destination-section li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .destination-cta {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Why Choose Section */
+        .why-choose {
+            background: linear-gradient(135deg, var(--primary), #0d2b5e);
+            color: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .benefit-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta {
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 25px;
+            font-size: 1rem;
+            color: var(--gray);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: #e0e0e0;
+            padding: 50px 0 15px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 15px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 8px 0;
+                text-align: center;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .destinations-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+            
+            .destination-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .destination-card {
+                margin: 0 10px;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .destination-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .destination-content {
+                padding: 20px;
+            }
+            
+            .destination-content h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">Milestone Global Education</div>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+                    <li><a href="destinations.html" class="active">Study Destinations</a></li>
+                    <li><a href="success.html">Success Stories</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+                <div class="mobile-menu" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="destinations-hero">
+        <div class="container">
+            <h1>Study Destinations</h1>
+            <p>Discover world-class education opportunities across the globe</p>
+        </div>
+    </section>
+
+    <!-- Destinations Grid -->
+    <section class="destinations-grid">
+        <div class="container">
+            <div class="section-title">
+                <h2>Explore Your Options</h2>
+                <p>Choose from our carefully selected study destinations that offer excellent education and career opportunities</p>
+            </div>
+            
+            <div class="destination-cards">
+                <!-- India -->
+                <div class="destination-card">
+                    <div class="destination-image">
+                        <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="India">
+                        <div class="destination-flag">
+                            <img src="https://flagcdn.com/w80/in.png" alt="India Flag">
+                        </div>
+                    </div>
+                    <div class="destination-content">
+                        <h3><i class="fas fa-globe-asia"></i> India</h3>
+                        
+                        <div class="destination-section">
+                            <h4><i class="fas fa-graduation-cap"></i> University Advantages</h4>
+                            <ul>
+                                <li>World-class technical and medical education</li>
+                                <li>Affordable tuition fees and living costs</li>
+                                <li>English-medium instruction widely available</li>
+                                <li>Strong focus on engineering and technology</li>
+                                <li>Rich cultural and historical learning environment</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="destination-section">
+                            <h4><i class="fas fa-plus-circle"></i> Why Study in India</h4>
+                            <ul>
+                                <li>Rapidly growing economy with job opportunities</li>
+                                <li>Diverse cultural experience</li>
+                                <li>Warm and welcoming environment</li>
+                                <li>Gateway to understanding emerging markets</li>
+                                <li>Strong alumni networks worldwide</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="destination-cta">
+                            <a href="contact.html" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- China -->
+                <div class="destination-card">
+                    <div class="destination-image">
+                        <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="China">
+                        <div class="destination-flag">
+                            <img src="https://flagcdn.com/w80/cn.png" alt="China Flag">
+                        </div>
+                    </div>
+                    <div class="destination-content">
+                        <h3><i class="fas fa-globe-asia"></i> China</h3>
+                        
+                        <div class="destination-section">
+                            <h4><i class="fas fa-graduation-cap"></i> University Advantages</h4>
+                            <ul>
+                                <li>Rapidly improving global university rankings</li>
+                                <li>Strong focus on STEM fields</li>
+                                <li>Generous scholarship opportunities</li>
+                                <li>Modern campus facilities</li>
+                                <li>Growing number of English-taught programs</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="destination-section">
+                            <h4><i class="fas fa-plus-circle"></i> Why Study in China</h4>
+                            <ul>
+                                <li>Learn the world's second most important language</li>
+                                <li>Understand the global economic powerhouse</li>
+                                <li>Affordable high-quality education</li>
+                                <li>Rich cultural heritage and modern cities</li>
+                                <li>Excellent career opportunities in global business</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="destination-cta">
+                            <a href="contact.html" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Canada -->
+                <div class="destination-card">
+                    <div class="destination-image">
+                        <img src="https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Canada">
+                        <div class="destination-flag">
+                            <img src="https://flagcdn.com/w80/ca.png" alt="Canada Flag">
+                        </div>
+                    </div>
+                    <div class="destination-content">
+                        <h3><i class="fas fa-globe-americas"></i> Canada</h3>
+                        
+                        <div class="destination-section">
+                            <h4><i class="fas fa-graduation-cap"></i> University Advantages</h4>
+                            <ul>
+                                <li>World-renowned research institutions</li>
+                                <li>High quality of education</li>
+                                <li>Diverse range of programs</li>
+                                <li>Strong industry connections</li>
+                                <li>Excellent student support services</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="destination-section">
+                            <h4><i class="fas fa-plus-circle"></i> Why Study in Canada</h4>
+                            <ul>
+                                <li>Post-graduation work opportunities</li>
+                                <li>Safe and welcoming multicultural society</li>
+                                <li>Pathway to permanent residency</li>
+                                <li>Beautiful natural environment</li>
+                                <li>High standard of living</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="destination-cta">
+                            <a href="contact.html" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Australia -->
+                <div class="destination-card">
+                    <div class="destination-image">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Australia">
+                        <div class="destination-flag">
+                            <img src="https://flagcdn.com/w80/au.png" alt="Australia Flag">
+                        </div>
+                    </div>
+                    <div class="destination-content">
+                        <h3><i class="fas fa-globe-oceania"></i> Australia</h3>
+                        
+                        <div class="destination-section">
+                            <h4><i class="fas fa-graduation-cap"></i> University Advantages</h4>
+                            <ul>
+                                <li>Globally recognized qualifications</li>
+                                <li>Innovative teaching methods</li>
+                                <li>Strong research opportunities</li>
+                                <li>Modern facilities and technology</li>
+                                <li>Diverse course offerings</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="destination-section">
+                            <h4><i class="fas fa-plus-circle"></i> Why Study in Australia</h4>
+                            <ul>
+                                <li>Excellent post-study work rights</li>
+                                <li>High quality of life</li>
+                                <li>Beautiful landscapes and beaches</li>
+                                <li>Multicultural society</li>
+                                <li>Strong economy with job opportunities</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="destination-cta">
+                            <a href="contact.html" class="btn btn-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Elsewhere -->
+                <div class="destination-card">
+                    <div class="destination-image">
+                        <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Europe">
+                        <div class="destination-flag">
+                            <img src="https://flagcdn.com/w80/eu.png" alt="Europe Flag">
+                        </div>
+                    </div>
+                    <div class="destination-content">
+                        <h3><i class="fas fa-globe-europe"></i> Other Destinations</h3>
+                        
+                        <div class="destination-section">
+                            <h4><i class="fas fa-graduation-cap"></i> Additional Options</h4>
+                            <ul>
+                                <li>United Kingdom: World-class universities</li>
+                                <li>United States: Diverse program options</li>
+                                <li>Germany: Tuition-free education</li>
+                                <li>New Zealand: Quality education</li>
+                                <li>Malaysia: Affordable international education</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="destination-section">
+                            <h4><i class="fas fa-plus-circle"></i> Why Consider Elsewhere</h4>
+                            <ul>
+                                <li>Find the perfect program match</li>
+                                <li>Explore different cultural experiences</li>
+                                <li>Various budget options available</li>
+                                <li>Different climate and lifestyle choices</li>
+                                <li>Unique specialization opportunities</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="destination-cta">
+                            <a href="contact.html" class="btn btn-primary">Explore Options</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="why-choose">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">Why Choose International Education?</h2>
+                <p style="color: rgba(255,255,255,0.8);">Global education opens doors to endless possibilities and career advancement</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Global Perspective</h3>
+                    <p>Develop a worldwide outlook and cross-cultural understanding</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Career Opportunities</h3>
+                    <p>Access to international job markets and higher earning potential</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Global Network</h3>
+                    <p>Build connections with students and professionals worldwide</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Personal Growth</h3>
+                    <p>Become independent and adaptable in new environments</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Choose Your Destination?</h2>
+            <p>Contact us today for personalized guidance on selecting the perfect study destination for your academic and career goals.</p>
+            <a href="contact.html" class="btn btn-secondary">Start Your Journey</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Milestone Global Education</h3>
+                    <p>Your trusted partner for international education and career guidance.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=61583068281897&rdid" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/milestoneglobaleducation" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/918699750645" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="destinations.html">Study Destinations</a></li>
+                        <li><a href="success.html">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Education Ave, City, Country</li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+918699750645">+91 86997 50645</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:milestoneglobaledu@gmail.com">milestoneglobaledu@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Milestone Global Education</p>
+                <p><a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.getElementById('nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

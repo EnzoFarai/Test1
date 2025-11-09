@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Milestone Global Education</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #1a4b8c;
+            --secondary: #d32f2f;
+            --light: #ffffff;
+            --dark: #212529;
+            --gray: #6c757d;
+            --transition: all 0.3s ease;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--light);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Hero Section */
+        .gallery-hero {
+            background: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+        }
+
+        .gallery-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .gallery-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .gallery-hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* Gallery Filter */
+        .gallery-filter {
+            background-color: #f8f9fa;
+            padding: 30px 0;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            cursor: pointer;
+            aspect-ratio: 1/1;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .gallery-title {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .gallery-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Video Section */
+        .video-gallery {
+            background: linear-gradient(135deg, var(--primary), #0d2b5e);
+            color: white;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .video-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .video-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .video-play:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .video-play i {
+            font-size: 1.5rem;
+            margin-left: 3px;
+        }
+
+        .video-content {
+            padding: 20px;
+        }
+
+        .video-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .video-content p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: #e0e0e0;
+            padding: 50px 0 15px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 15px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 8px 0;
+                text-align: center;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .gallery-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-buttons {
+                gap: 5px;
+            }
+            
+            .filter-btn {
+                padding: 6px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-item {
+                aspect-ratio: 4/3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">Milestone Global Education</div>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+                    <li><a href="destinations.html">Study Destinations</a></li>
+                    <li><a href="success.html">Success Stories</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+                <div class="mobile-menu" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gallery-hero">
+        <div class="container">
+            <h1>Our Gallery</h1>
+            <p>Explore moments from student send-offs, university visits, seminars, and our journey together</p>
+        </div>
+    </section>
+
+    <!-- Gallery Filter -->
+    <section class="gallery-filter">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Events</button>
+                <button class="filter-btn" data-filter="sendoff">Student Send-offs</button>
+                <button class="filter-btn" data-filter="seminar">Seminars & Workshops</button>
+                <button class="filter-btn" data-filter="university">University Visits</button>
+                <button class="filter-btn" data-filter="events">Special Events</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="gallery">
+        <div class="container">
+            <div class="gallery-grid">
+                <!-- Student Send-offs -->
+                <div class="gallery-item" data-category="sendoff">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Student Send-off">
+                    <div class="gallery-category">Send-off</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Canada Bound Students</div>
+                        <div class="gallery-description">Farewell ceremony for students departing to Canadian universities</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="sendoff">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Group Send-off">
+                    <div class="gallery-category">Send-off</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Australia Intake 2024</div>
+                        <div class="gallery-description">Group photo with students heading to various Australian universities</div>
+                    </div>
+                </div>
+
+                <!-- Seminars & Workshops -->
+                <div class="gallery-item" data-category="seminar">
+                    <img src="https://images.unsplash.com/photo-1584697964358-3e14ca57658b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Education Seminar">
+                    <div class="gallery-category">Seminar</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Study Abroad Seminar</div>
+                        <div class="gallery-description">Interactive session on international education opportunities</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="seminar">
+                    <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Visa Workshop">
+                    <div class="gallery-category">Workshop</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Visa Preparation Workshop</div>
+                        <div class="gallery-description">Hands-on guidance for student visa applications</div>
+                    </div>
+                </div>
+
+                <!-- University Visits -->
+                <div class="gallery-item" data-category="university">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Campus Tour">
+                    <div class="gallery-category">University Visit</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">NIMS University Campus</div>
+                        <div class="gallery-description">Official visit to partner university facilities</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="university">
+                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2066&q=80" alt="University Meeting">
+                    <div class="gallery-category">University Visit</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Partner University Meeting</div>
+                        <div class="gallery-description">Discussions with university representatives</div>
+                    </div>
+                </div>
+
+                <!-- Special Events -->
+                <div class="gallery-item" data-category="events">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Education Fair">
+                    <div class="gallery-category">Special Event</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">International Education Fair</div>
+                        <div class="gallery-description">Annual fair connecting students with global opportunities</div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="events">
+                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Networking Event">
+                    <div class="gallery-category">Special Event</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-title">Alumni Networking</div>
+                        <div class="gallery-description">Connecting current students with successful alumni</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Gallery -->
+    <section class="video-gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">Video Moments</h2>
+                <p style="color: rgba(255,255,255,0.8);">Relive the memorable moments through our video collection</p>
+            </div>
+            
+            <div class="video-grid">
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Success Stories">
+                        <div class="video-play">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Student Success Montage</h3>
+                        <p>Compilation of our students' journey to international education</p>
+                        <a href="#" class="btn btn-primary" style="background: white; color: var(--primary);">Watch Now</a>
+                    </div>
+                </div>
+
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1584697964358-3e14ca57658b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Seminar Highlights">
+                        <div class="video-play">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Seminar Highlights</h3>
+                        <p>Key moments from our recent study abroad seminars</p>
+                        <a href="#" class="btn btn-primary" style="background: white; color: var(--primary);">Watch Now</a>
+                    </div>
+                </div>
+
+                <div class="video-item">
+                    <div class="video-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Campus Tours">
+                        <div class="video-play">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Virtual Campus Tours</h3>
+                        <p>Explore partner universities from around the world</p>
+                        <a href="#" class="btn btn-primary" style="background: white; color: var(--primary);">Watch Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Milestone Global Education</h3>
+                    <p>Your trusted partner for international education and career guidance.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=61583068281897&rdid" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/milestoneglobaleducation" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/918699750645" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="destinations.html">Study Destinations</a></li>
+                        <li><a href="success.html">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Education Ave, City, Country</li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+918699750645">+91 86997 50645</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:milestoneglobaledu@gmail.com">milestoneglobaledu@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Milestone Global Education</p>
+                <p><a href="#">Privacy Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            document.getElementById('nav-menu').classList.toggle('active');
+        });
+
+        // Gallery Filter Functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Video play functionality
+        document.querySelectorAll('.video-play').forEach(playButton => {
+            playButton.addEventListener('click', function() {
+                alert('Video player would launch here. This is a placeholder for demonstration.');
+            });
+        });
+    </script>
+</body>
+</html>
