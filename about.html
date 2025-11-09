@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Milestone Global Education</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* About Page Specific Styles */
+        .about-hero {
+            background: url('assets/images/about-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+            position: relative;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .about-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .about-hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* Mission & Vision - Side by side even on mobile */
+        .mission-vision {
+            background-color: #f8f9fa;
+        }
+
+        .mv-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .mv-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .mv-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .mv-icon {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .mv-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .mv-card p {
+            color: var(--gray);
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* Story & Values */
+        .story-values {
+            background-color: white;
+        }
+
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            text-align: center;
+        }
+
+        .story-content h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .story-content p {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        /* Values - Single block without cards */
+        .values-block {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .values-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .value-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .value-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .value-content p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Leadership Message - Centered text */
+        .leadership-message {
+            background-color: #f8f9fa;
+        }
+
+        .message-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .message-content h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .message-content p {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            font-style: italic;
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        .director-name {
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 20px;
+        }
+
+        /* Governance - No cards, just list */
+        .governance {
+            background-color: white;
+        }
+
+        .governance-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .governance-category {
+            margin-bottom: 40px;
+        }
+
+        .governance-category h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .governance-category h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .team-member {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            margin-bottom: 30px;
+            padding: 0;
+        }
+
+        .member-image {
+            flex-shrink: 0;
+            width: 120px;
+            height: 150px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-info {
+            flex: 1;
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .member-title {
+            font-size: 1rem;
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .member-contact {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 5px;
+        }
+
+        .member-contact a {
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .member-contact a:hover {
+            color: var(--secondary);
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        /* Responsive Design for About Page */
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .mv-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .mv-card {
+                padding: 12px;
+            }
+            
+            .mv-icon {
+                font-size: 1.5rem;
+            }
+            
+            .mv-card h3 {
+                font-size: 1rem;
+            }
+            
+            .mv-card p {
+                font-size: 0.8rem;
+            }
+            
+            .values-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-member {
+                gap: 15px;
+            }
+            
+            .member-image {
+                width: 100px;
+                height: 130px;
+            }
+            
+            .member-name {
+                font-size: 1.1rem;
+            }
+            
+            .member-title, .member-contact {
+                font-size: 0.85rem;
+            }
+            
+            .contact-links {
+                gap: 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mv-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-member {
+                gap: 12px;
+            }
+            
+            .member-image {
+                width: 90px;
+                height: 120px;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                gap: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About Milestone Global Education</h1>
+            <p>Your trusted partner in achieving academic success worldwide</p>
+            <a href="#" class="btn btn-secondary consultation-btn">Book Free Consultation</a>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="mission-vision">
+        <div class="container">
+            <div class="mv-grid">
+                <div class="mv-card">
+                    <div class="mv-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>To guide and support students in achieving their academic and career goals globally.</p>
+                </div>
+                <div class="mv-card">
+                    <div class="mv-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>To be the most trusted education partner for students worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story & Values -->
+    <section class="story-values">
+        <div class="container">
+            <div class="story-content">
+                <h3>Our Story</h3>
+                <p>Milestone Global Education was founded with a clear purpose: to make quality global education accessible to students from all backgrounds. Our journey began with the recognition that students need personalized guidance to navigate the complex process of studying abroad.</p>
+                <p>Since our establishment, we have helped thousands of students achieve their dreams of studying at prestigious institutions around the world, building a reputation for excellence and integrity in the education consultancy industry.</p>
+            </div>
+            
+            <div class="section-title">
+                <h2>Our Values</h2>
+            </div>
+            
+            <div class="values-block">
+                <div class="values-list">
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="value-content">
+                            <h4>Integrity</h4>
+                            <p>We maintain the highest ethical standards in all our interactions and services.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="value-content">
+                            <h4>Excellence</h4>
+                            <p>We strive for the highest quality in everything we do for our students.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="value-content">
+                            <h4>Commitment</h4>
+                            <p>We are dedicated to our students' success from start to finish.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="value-content">
+                            <h4>Student Success</h4>
+                            <p>Our primary focus is on achieving the best outcomes for our students.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Message -->
+    <section class="leadership-message">
+        <div class="container">
+            <div class="message-content">
+                <h3>Message from the Director</h3>
+                <p>"At Milestone Global Education, we believe that education is the most powerful tool for personal and societal transformation. Our dedicated team works tirelessly to ensure that every student we serve receives the guidance and support needed to achieve their academic dreams. We are committed to being your trusted partner on this important journey."</p>
+                <div class="director-name">- Matthew Bvurire, CEO & Director</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Governance -->
+    <section class="governance">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Leadership Team</h2>
+            </div>
+            
+            <div class="governance-grid">
+                <div class="governance-category">
+                    <h3>Executive Management</h3>
+                    
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="assets/images/team/matthew-bvurire.jpg" alt="Matthew Bvurire">
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Matthew Bvurire</div>
+                            <div class="member-title">CEO, Director</div>
+                            <div class="member-contact">
+                                <div class="contact-links">
+                                    <a href="https://wa.me/918699750645" target="_blank">+91 86997 50645</a>
+                                    <a href="mailto:milestoneglobaledu@gmail.com">milestoneglobaledu@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="assets/images/team/clint-matimba.jpg" alt="Clint Matimba">
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Clint Matimba</div>
+                            <div class="member-title">Operation Manager</div>
+                            <div class="member-contact">
+                                <div class="contact-links">
+                                    <a href="https://wa.me/918968436628" target="_blank">+91 89684 36628</a>
+                                    <a href="mailto:Kundisomatimba@gmail.com">Kundisomatimba@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="assets/images/team/mpho-msipa.jpg" alt="Mpho Msipa">
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Mpho Msipa</div>
+                            <div class="member-title">Manager</div>
+                            <div class="member-contact">
+                                <div class="contact-links">
+                                    <a href="https://wa.me/8618710325816" target="_blank">+86 187 1032 5816</a>
+                                    <a href="mailto:msipampho9@gmail.com">msipampho9@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="governance-category">
+                    <h3>Board of Directors</h3>
+                    
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="assets/images/team/matthew-bvurire.jpg" alt="Matthew Bvurire">
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Matthew Bvurire</div>
+                            <div class="member-title">CEO, Director</div>
+                            <div class="member-contact">
+                                <div class="contact-links">
+                                    <a href="https://wa.me/918699750645" target="_blank">+91 86997 50645</a>
+                                    <a href="mailto:milestoneglobaledu@gmail.com">milestoneglobaledu@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="assets/images/team/valentine-mutunha.jpg" alt="Valentine Mutunha">
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Valentine Mutunha</div>
+                            <div class="member-title">Director</div>
+                            <div class="member-contact">
+                                <div class="contact-links">
+                                    <a href="https://wa.me/918905124817" target="_blank">+91 89051 24817</a>
+                                    <a href="mailto:valentinemutunha8@gmail.com">valentinemutunha8@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Begin Your Global Education Journey?</h2>
+            <p>Contact us today for a free consultation and let us help you achieve your academic dreams abroad.</p>
+            <a href="#" class="btn btn-secondary consultation-btn">Get Started Now</a>
+        </div>
+    </section>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Modals -->
+    <div id="modals-placeholder"></div>
+
+    <!-- JavaScript Files -->
+    <script src="js/header-footer.js"></script>
+    <script src="js/modals.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!-- Application Modal -->
+<div class="modal-overlay" id="application-modal">
+    <div class="consultation-modal">
+        <div class="modal-header">
+            <h2 class="modal-title">Start Your Application</h2>
+            <button class="close-modal">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="application-form">
+                <div class="form-group">
+                    <label for="application-full-name" class="form-label">Full name</label>
+                    <input type="text" id="application-full-name" class="form-control" placeholder="e.g. John Smith" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="application-email" class="form-label">Email</label>
+                    <input type="email" id="application-email" class="form-control" placeholder="e.g. john@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="application-phone" class="form-label">Mobile Number</label>
+                    <div class="phone-input-group">
+                        <div class="country-code-container">
+                            <input type="text" id="application-country-code" class="form-control" placeholder="Country code" value="">
+                            <div class="country-code-dropdown" id="application-country-code-dropdown">
+                                <!-- Country options will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="phone-number">
+                            <input type="tel" id="application-phone" class="form-control" placeholder="e.g. 1234567890" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="application-country-residence" class="form-label">Country of Residence</label>
+                    <input type="text" id="application-country-residence" class="form-control" placeholder="e.g. United States" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="application-nationality" class="form-label">Nationality</label>
+                    <input type="text" id="application-nationality" class="form-control" placeholder="e.g. American" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="application-course" class="form-label">Desired Course/Program</label>
+                    <input type="text" id="application-course" class="form-control" placeholder="e.g. Computer Science" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="application-study-destination" class="form-label">Preferred study destination</label>
+                    <div class="select-wrapper">
+                        <select id="application-study-destination" class="form-control" required>
+                            <option value="">Select destination</option>
+                            <option value="India">India</option>
+                            <option value="China">China</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Somewhere Else">Somewhere Else</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="application-study-level" class="form-label">Level of study</label>
+                    <div class="select-wrapper">
+                        <select id="application-study-level" class="form-control" required>
+                            <option value="">Select level</option>
+                            <option value="Bachelor's">Bachelor's</option>
+                            <option value="Master's">Master's</option>
+                            <option value="Diploma">Diploma</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="application-study-year" class="form-label">Preferred study year</label>
+                    <div class="select-wrapper">
+                        <select id="application-study-year" class="form-control" required>
+                            <option value="">Select year</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="application-intake-month" class="form-label">Preferred intake month</label>
+                    <div class="select-wrapper">
+                        <select id="application-intake-month" class="form-control" required>
+                            <option value="">Select month</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-footer">
+                    <div class="terms-checkbox">
+                        <input type="checkbox" id="application-terms" checked required>
+                        <label for="application-terms">By submitting this form, you agree to our <a href="#">Privacy Policy</a> and <a href="#">Terms & Conditions</a></label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        Submit Application
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
